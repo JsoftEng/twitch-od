@@ -7,8 +7,8 @@
       <h1 class='heading-label'>TWITCHOD</h1>
     </div>
     <div class='heading-search-container'>
-      <input class='heading-search-input' type='text' placeholder='Search by username'/>
-      <span class='heading-search-icon'><i class="fas fa-search"></i></span>
+      <input v-model='search' class='heading-search-input' type='text' placeholder='Search by username'/>
+      <span class='heading-search-icon'><i v-on:click='handleSearch' class="fas fa-search"></i></span>
     </div>
   </div>
 </template>

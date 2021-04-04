@@ -16,15 +16,15 @@ import Header from './components/layout/Header/Header.vue'
 import Main from './components/layout/Main/Main.vue'
 import Footer from './components/layout/Footer/Footer.vue'
 import TwitchAPIClient from './services/twitch-api-client'
-
-// eslint-disable-next-line no-unused-vars
-const client = new TwitchAPIClient()
+import mitt from 'mitt'
 
 export default {
   name: 'App',
   data () {
     return {
-      isFetching: true
+      isFetching: true,
+      client: new TwitchAPIClient(),
+      eventBus: mitt()
     }
   },
   components: {
@@ -34,10 +34,10 @@ export default {
   },
   methods: {
     initClient: function () {
-      client.init().then(
+      this.client.init().then(
         () => {
+          console.log(process.env.VUE_APP_CLIENT_ID)
           this.isFetching = false
-          console.log(this)
         }
       )
     }
@@ -45,8 +45,11 @@ export default {
   mounted () {
     this.initClient()
   },
-  provide: {
-    twitch_client: client
+  provide () {
+    return {
+      twitch_client: this.client,
+      event_bus: this.eventBus
+    }
   }
 }
 </script>
@@ -60,18 +63,23 @@ export default {
     cursor: default;
   }
 
+  input {
+    &:focus {
+      outline: none;
+    }
+  }
+
   .root {
-    display: flex;
-    flex-direction: column;
     background-color: #161819;
     height: 100vh;
+    overflow: hidden;
 
     .data-fetch {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       font-family: Roboto, sans-serif;
       color: #8EF2FF;
       margin: 0px;

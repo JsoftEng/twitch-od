@@ -1,0 +1,43 @@
+.video {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  width: 300px;
+
+  img {
+    cursor: pointer;
+  }
+
+  .video-details {
+    display: flex;
+    flex-direction: row;
+
+    .video-detail-game-avatar {
+      height: 125px;
+      width: 80px;
+      margin: 0px 5px 0px 0px;
+      background-color: green;
+    }
+
+    .video-detail-titles {
+      display: flex;
+      flex-direction: column;
+      width: 210px;
+
+      h2 {
+        font-family: 'Noto Sans JP', sans-serif;
+        font-size: 0.7em;
+        margin: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #B3C0C1;
+        cursor: pointer;
+
+        &:hover {
+          color: #8EF2FF;
+        }
+      }
+    }
+  }
+}
