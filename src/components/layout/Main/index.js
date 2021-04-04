@@ -64,11 +64,7 @@ export default {
   mounted () {
     if (this.broadcaster) {
       this.getBroadcasterByName(this.broadcaster).then(
-        (broadcasterData) => {
-          if (broadcasterData) {
-            console.log('hello')
-          }
-        }
+        (broadcasterData) => {}
       )
     }
   },

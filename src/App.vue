@@ -36,7 +36,6 @@ export default {
     initClient: function () {
       this.client.init().then(
         () => {
-          console.log(process.env.VUE_APP_CLIENT_ID)
           this.isFetching = false
         }
       )
