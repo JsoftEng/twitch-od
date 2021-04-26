@@ -9,7 +9,8 @@ export default {
       broadcaster_name: '',
       broadcaster_profile_picture_url: '',
       broadcaster_channel_description: '',
-      videos: []
+      videos: [],
+      video_paginator: null
     }
   },
   methods: {
@@ -27,29 +28,43 @@ export default {
       const video = await this.twitch_client.apiClient.kraken.videos.getVideo(videoID)
 
       return video
+    },
+    handleLoadVideos: function () {
+      const self = this
+
+      self.video_paginator.getNext().then(
+        (data) => {
+          data.map((video) => {
+            self.videos.push(video)
+          })
+        }
+      )
     }
   },
   created () {
-    this.event_bus.on('emit-search', (searchString) => {
-      this.hasVideos = false
-      this.videos = []
-      this.broadcaster_name = searchString
+    const self = this
 
-      this.getBroadcasterByName(searchString).then(
+    self.event_bus.on('emit-search', (searchString) => {
+      self.hasVideos = false
+      self.videos = []
+      self.broadcaster_name = searchString
+
+      self.getBroadcasterByName(searchString).then(
         (broadcasterData) => {
           if (broadcasterData) {
-            this.broadcaster_name = broadcasterData._data.display_name
-            this.broadcaster_profile_picture_url = broadcasterData._data.profile_image_url
-            this.broadcaster_channel_description = '"' + broadcasterData._data.description + '"'
+            self.broadcaster_name = broadcasterData._data.display_name
+            self.broadcaster_profile_picture_url = broadcasterData._data.profile_image_url
+            self.broadcaster_channel_description = '"' + broadcasterData._data.description + '"'
             const broadcasterID = broadcasterData._data.id
-            this.getVideosByBroadcaster(broadcasterID).then(
+            self.getVideosByBroadcaster(broadcasterID).then(
               (videoData) => {
                 if (videoData) {
-                  this.hasVideos = true
-                  videoData.getNext().then(
+                  self.hasVideos = true
+                  self.video_paginator = videoData
+                  self.video_paginator.getNext().then(
                     (data) => {
                       data.map((video) => {
-                        this.videos.push(video)
+                        self.videos.push(video)
                       })
                     }
                   )

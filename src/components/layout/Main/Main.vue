@@ -22,6 +22,11 @@
         />
       </div>
     </div>
+    <div class='load-videos-button-container'>
+      <div class='load-videos' v-on:click='handleLoadVideos'>
+        <span>Load More</span>
+      </div>
+    </div>
   </main>
   <main class='no-videos' v-else>
     <h1>{{ broadcaster_name }} Has No Videos!</h1>
