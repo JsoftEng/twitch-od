@@ -4,29 +4,75 @@
   height: 250px;
   width: 300px;
 
-  img {
-    cursor: pointer;
+  .video-thumbnail-container{
+    position: relative;
+
+    .video-overlay-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.9em;
+      font-weight: 400;
+      margin: 0px;
+      pointer-events: none;
+
+      %video-overlay-detail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height:  25px;
+        margin: 10px;
+        background-color: #000000a3;
+        pointer-events: inherit;
+      }
+
+      .video-overlay-duration {
+        @extend %video-overlay-detail;
+
+        width: 75px;
+      }
+
+      .video-overlay-publish-date {
+        @extend %video-overlay-detail;
+
+        width: 125px;
+        align-self: flex-end;
+      }
+    }
+
+    .video-thumbnail-bg-container {
+      .video-thumbnail-bg {
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        background-size: 100%;
+        transition: background-size 0.5s;
+        
+        &:hover {
+          background-size: 105%;
+        }
+      }
+    }
   }
 
   .video-details {
     display: flex;
     flex-direction: row;
+    margin: 5px 0px 0px 0px;
 
-    .video-detail-game-avatar {
-      height: 125px;
-      width: 80px;
-      margin: 0px 5px 0px 0px;
-      background-color: green;
-    }
-
-    .video-detail-titles {
+    .video-detail-title {
       display: flex;
       flex-direction: column;
-      width: 210px;
+      width: 100%;
 
       h2 {
         font-family: 'Noto Sans JP', sans-serif;
-        font-size: 0.7em;
+        font-size: 0.9em;
+        font-weight: 400;
         margin: 0px;
         white-space: nowrap;
         overflow: hidden;

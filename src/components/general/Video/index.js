@@ -1,9 +1,12 @@
+import { formatVideoDuration, formatVideoPublishDate } from '../../../services/util.js'
+
 export default {
   name: 'Video',
   data () {
     return {
       thumbnail_url: null,
-      video_url: null
+      video_url: null,
+      duration_formatted: null
     }
   },
   props: {
@@ -27,6 +30,8 @@ export default {
     }
 
     this.video_url = new URL(this.videoURL)
+    this.duration_formatted = formatVideoDuration(this.duration)
+    this.publish_date_formated = formatVideoPublishDate(this.created)
   },
   mounted () {
 

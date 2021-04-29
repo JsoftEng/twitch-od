@@ -66,6 +66,8 @@ export default {
                       data.map((video) => {
                         self.videos.push(video)
                       })
+
+                      console.log(self.videos)
                     }
                   )
                 }

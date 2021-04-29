@@ -1,10 +1,12 @@
 <template>
   <div class='header-container'>
     <div class='heading-container'>
-      <div class='heading-icon'>
+      <a href='/' class='heading-icon'>
         <i class="fas fa-video"></i>
-      </div>
-      <h1 class='heading-label'>TWITCHOD</h1>
+      </a>
+      <a href='/'>
+        <h1 class='heading-label'>TWITCHOD</h1>
+      </a>
     </div>
     <div class='heading-search-container'>
       <form id='search-form' class='search-form' v-on:submit.prevent='handleSearch'>
