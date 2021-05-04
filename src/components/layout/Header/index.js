@@ -1,4 +1,3 @@
-
 export default {
   name: 'Header',
   inject: ['event_bus'],

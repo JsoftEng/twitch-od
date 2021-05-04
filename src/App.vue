@@ -1,13 +1,8 @@
 <template>
-  <div class='root' v-if='!isFetching'>
+  <div class='root'>
     <Header />
     <Main />
     <Footer />
-  </div>
-  <div class='root' v-else>
-    <main class='data-fetch'>
-      <h1>Fetching!</h1>
-    </main>
   </div>
 </template>
 
@@ -22,7 +17,7 @@ export default {
   name: 'App',
   data () {
     return {
-      isFetching: true,
+      initializing: true,
       client: new TwitchAPIClient(),
       eventBus: mitt()
     }
@@ -36,7 +31,7 @@ export default {
     initClient: function () {
       this.client.init().then(
         () => {
-          this.isFetching = false
+          this.initializing = false
         }
       )
     }
@@ -72,16 +67,5 @@ export default {
     background-color: #161819;
     height: 100vh;
     overflow: hidden;
-
-    .data-fetch {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100vh;
-      font-family: Roboto, sans-serif;
-      color: #8EF2FF;
-      margin: 0px;
-    }
   }
 </style>

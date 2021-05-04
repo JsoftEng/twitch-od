@@ -6,6 +6,7 @@ export default {
   data () {
     return {
       hasVideos: false,
+      initialLoad: true,
       broadcaster_name: '',
       broadcaster_profile_picture_url: '',
       broadcaster_channel_description: '',
@@ -67,7 +68,7 @@ export default {
                         self.videos.push(video)
                       })
 
-                      console.log(self.videos)
+                      self.initialLoad = false
                     }
                   )
                 }

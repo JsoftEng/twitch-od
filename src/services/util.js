@@ -25,8 +25,10 @@ function formatVideoDuration (duration) {
   }
 
   // Add leading zero to minutes if less than 10 minutes
-  if (durationArray[minIndex].length < 2) {
-    durationArray[minIndex] = '0' + durationArray[minIndex]
+  if (minIndex) {
+    if (durationArray[minIndex].length < 2) {
+      durationArray[minIndex] = '0' + durationArray[minIndex]
+    }
   }
 
   // Add leading zero to seconds if less than 10 seconds

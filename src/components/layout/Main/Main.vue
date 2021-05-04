@@ -2,11 +2,11 @@
   <main class='videos' v-if='hasVideos'>
     <div class='broadcaster-container'>
       <div class='broadcaster-profile-picture-container'>
-        <img v-bind:src='broadcaster_profile_picture_url'/>
+        <img alt='profile picture' v-bind:src='broadcaster_profile_picture_url'/>
       </div>
       <div class='broadcaster-details-container'>
         <h2> {{ broadcaster_name }} </h2>
-        <p><i>{{ broadcaster_channel_description }}</i></p>
+        <p>{{ broadcaster_channel_description }}</p>
       </div>
     </div>
     <div class='video-container'>
@@ -29,7 +29,8 @@
     </div>
   </main>
   <main class='no-videos' v-else>
-    <h1>{{ broadcaster_name }} Has No Videos!</h1>
+    <h1 v-if='initialLoad'>No Videos</h1>
+    <h1 v-else>{{ broadcaster_name }} has no videos!</h1>
   </main>
 </template>
 

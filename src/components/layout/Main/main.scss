@@ -41,6 +41,7 @@
       }
 
       p {
+        font-style: italic;
         margin: 5px 0px;
         cursor: unset;
       }
@@ -57,6 +58,7 @@
     justify-items: center;
     align-items: center;
     width: 60%;
+    min-width: 300px;
   }
 
   .load-videos-button-container {
@@ -85,5 +87,7 @@
 .no-videos {
   @extend %main;
 
+  color: #D2D2D21C;
+  font-size: 2em;
   justify-content: center;
 }
